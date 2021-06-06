@@ -1,0 +1,29 @@
+node {
+    def docker_image
+    stage('Checkout') { // for display purposes
+        // Get some code from a GitHub repository
+        println("Checking code out from SCM")
+    }
+    stage('Build') {
+        // Build the image
+        println("Building docker image")
+    }
+    stage('Ready to deploy?'){
+        def rdyDeploy = input(message: 'Ready to deploy?', ok: 'Yes')
+    }
+                        
+    stage('Deploy to Test') {
+        println("Deploying to test environment")
+        sh 'kubectl --context=docker-desktop --namespace=web-qa apply -f /Users/kevinng/Kevin/work/k8s/simple-nginx/development.yaml'
+    }
+
+    stage('Testing passed?'){
+        def testPass = input(message: 'Testing passed?', ok: 'Yes')
+    }
+
+    stage('Deploy to Prod') {
+        println("Deploying to production environment")
+        sh 'kubectl --context=arn:aws:eks:us-east-2:385398552701:cluster/demo --namespace=web-prod apply -f /Users/kevinng/Kevin/work/k8s/simple-nginx/development.yaml'
+    }
+    
+}

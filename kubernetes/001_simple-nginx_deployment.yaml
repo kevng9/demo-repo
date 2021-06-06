@@ -23,6 +23,9 @@ spec:
                       - linux
       containers:
         - name: simple-nginx-fe
-          image: ${REGISTRY_HOSTNAME}/${IMAGE_NAMESPACE}/${IMAGE_REPOSITORY}:${IMAGE_TAG}
+          #image: ${REGISTRY_HOSTNAME}/${IMAGE_NAMESPACE}/${IMAGE_REPOSITORY}:${IMAGE_TAG}
+          #image: simple-nginx
+          #imagePullPolicy: Never
+          image: kevng9/demo-repo
           ports:
             - containerPort: 80

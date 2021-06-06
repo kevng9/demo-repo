@@ -1,0 +1,2 @@
+service/simple-nginx unchanged
+deployment.apps/simple-nginx unchanged
